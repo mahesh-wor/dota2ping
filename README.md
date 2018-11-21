@@ -21,7 +21,7 @@ chmod +x dota2pyping.py
 python3 dota2pyping
 ```
 ## Meta
-
+Steam-ID – [@invoron](https://steamcommunity.com/id/dendironqwe)
 Mahesh-wor – [@mahesh-wor](https://twitter.com/dbader_org) – maheshwor89@gmail.com
 
 Distributed under the GPL license. See ``LICENSE`` for more information.
