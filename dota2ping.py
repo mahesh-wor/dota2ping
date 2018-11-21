@@ -18,8 +18,8 @@ sevip = {'SE Asia-1':'sgp-1.valve.net',
 'SE Asia-2':'sgp-2.valve.net',
 'India':'116.202.224.146',
 }
-art="""
-▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
+print('\n')
+art="""▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
 ▓▓▓▒░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ▓▓▓▓▒░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░▒▓▓▓▓▓▓▓
 ▓▓▓▓▓▒░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░░░▒▓▓▓▓▓▓▓
@@ -42,10 +42,17 @@ art="""
 #print(sevip['same'])
 #print(sevip['sea'])
 
-def pingserver(ip,sev):
+print(art) #for ascii art
+
+art_init = 0
+
+def pingserver(ip,sev,art_init):
     ping_response = subprocess.Popen(["/bin/ping","-c1", ip], stdout=subprocess.PIPE).stdout.read()
     latency = str(ping_response)
     ping_value=latency.split('ms\\n\\n---')[0].split('=')[-1]
+
+    #print(art_init)
+    #print(art.split('\n\n')[art_init])
 
     if len(ping_value) > 10:
         #print('length',len(ping_value))
@@ -56,9 +63,11 @@ def pingserver(ip,sev):
 
 threads_list = []
 for sev,ip in sevip.items():
-    t = threading.Thread(target=pingserver,name='thread_{}'.format(sev),args=(ip,sev))
-    threads_list.append(t)
-    t.start()
+    #    art_init = art_init+1;
+    #    print(art_init, 'loop')
+        t = threading.Thread(target=pingserver,name='thread_{}'.format(sev),args=(ip,sev,art_init))
+        threads_list.append(t)
+        t.start()
 
 
     #print('{} has started'.format(t.name))
