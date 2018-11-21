@@ -1,8 +1,6 @@
 import sys
 import subprocess
 import os
-import re
-import statistics
 
 sevip = {'sea':'103.28.54.1','euw':'146.66.152.1',
 'eue':'146.66.155.1','usw':'192.69.96.1',
@@ -13,18 +11,21 @@ sevip = {'sea':'103.28.54.1','euw':'146.66.152.1',
 print(sevip['same'])
 print(sevip['sea'])
 
+for sev,ip in sevip.items():
+    ping_response = subprocess.Popen(["/bin/ping","-c1", ip], stdout=subprocess.PIPE).stdout.read()
+    latency = str(ping_response)
+    if len(latency) > 5:
+        print(len(latency))
+        ping_value = 'Error'
+    else:
+        ping_value=latency.split('ms\\n\\n---')[0].split('=')[-1]
+    print(ping_value)
 
 
 
-def ping_list(ip):
-    #cmd = "ping" "-n 1 " + ip
-    #val = os.system(cmd)
-    val = subprocess.Popen(["ping",ip , "-n", '4'], stdout=subprocess.PIPE).stdout.read()
-    val=val[-6:-4]
-    print(val)
-    len(val)
+#    ping_list_dict['sev']=ping_value
+#    print(ping_list_dict)
 
-ping_list('8.8.8.8')
 
 
 input()
