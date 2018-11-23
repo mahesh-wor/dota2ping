@@ -2,7 +2,7 @@
 > fully functional python scripy to ping all major dota2 servers & print results.
 
 no need to open the game to just check your ping.
-![](header.png)
+![](header.gif)
 
 ## Installation
 
