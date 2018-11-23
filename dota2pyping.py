@@ -56,7 +56,7 @@ def pingserver(ip,sev,art_init):
 
     if len(ping_value) > 10:
         #print('length',len(ping_value))
-        ping_value = 'Error / Server_Mismatch'
+        ping_value = 'Error / IP_mismatch'
         print(sev,'----------------',ping_value)
     else:
         print(sev,'----------------',ping_value)

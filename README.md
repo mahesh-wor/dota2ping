@@ -1,8 +1,7 @@
 # d2pyping
-> fully functional python scripy to ping all major dota2 servers & print result.
+> fully functional python scripy to ping all major dota2 servers & print results.
 
-No need to open the game to just check your ping. Enjoy Lag Free Game.
-
+no need to open the game to just check your ping.
 ![](header.png)
 
 ## Installation
