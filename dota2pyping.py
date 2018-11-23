@@ -18,7 +18,7 @@ sevip = {'SE Asia-1':'sgp-1.valve.net',
 'SE Asia-2':'sgp-2.valve.net',
 'India':'116.202.224.146',
 }
-print('\n')
+
 art="""▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
 ▓▓▓▒░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ▓▓▓▓▒░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░▒▓▓▓▓▓▓▓
@@ -38,28 +38,36 @@ art="""▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓�
 ▓▓▓▓▓▒░░░░░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░▒▓▓▓
 ▓▓▓▓▓▓▒░░░░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░▒▓▓▓▓
 ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒"""
-
+#print(len(art.split('\n')))
 #print(sevip['same'])
 #print(sevip['sea'])
 
-print(art) #for ascii art
+# print(art) #for ascii art
 
 art_init = 0
+# a = [1,2,3,4,5,6,7,8,9,10,11]
+# b = iter(a)
+dotalist = iter(art.split('\n'))
+
 
 def pingserver(ip,sev,art_init):
     ping_response = subprocess.Popen(["/bin/ping","-c1", ip], stdout=subprocess.PIPE).stdout.read()
     latency = str(ping_response)
     ping_value=latency.split('ms\\n\\n---')[0].split('=')[-1]
-
+    # a = [1,2,3,4,5]
     #print(art_init)
     #print(art.split('\n\n')[art_init])
-
+    # lines = line(len(sev))
     if len(ping_value) > 10:
         #print('length',len(ping_value))
         ping_value = 'Error / IP_mismatch'
-        print(sev,'----------------',ping_value)
+
+        print(dotalist.__next__(),sev,'-'*(25-len(sev)),ping_value)
     else:
-        print(sev,'----------------',ping_value)
+        print(dotalist.__next__(),sev,'-'*(25-len(sev)),ping_value)
+        # print(dotalist.__next__(),end="")
+        # print(sev, end="")
+        # print(ping_value)
 
 threads_list = []
 for sev,ip in sevip.items():
@@ -72,6 +80,8 @@ for sev,ip in sevip.items():
 
     #print('{} has started'.format(t.name))
 
-
+t.join()
 #    ping_list_dict['sev']=ping_value
 #    print(ping_list_dict)
+for val in range(5):
+    print(dotalist.__next__())
