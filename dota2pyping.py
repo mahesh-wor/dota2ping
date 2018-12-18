@@ -1,3 +1,4 @@
+
 import sys
 import subprocess
 import os
@@ -51,7 +52,7 @@ dotalist = iter(art.split('\n'))
 
 
 def pingserver(ip,sev,art_init):
-    ping_response = subprocess.Popen(["/bin/ping","-c1", ip], stdout=subprocess.PIPE).stdout.read()
+    ping_response = subprocess.Popen(["/bin/ping","-c1","-w 1", ip], stdout=subprocess.PIPE).stdout.read()
     latency = str(ping_response)
     ping_value=latency.split('ms\\n\\n---')[0].split('=')[-1]
     # a = [1,2,3,4,5]
@@ -60,7 +61,7 @@ def pingserver(ip,sev,art_init):
     # lines = line(len(sev))
     if len(ping_value) > 10:
         #print('length',len(ping_value))
-        ping_value = 'Error / IP_mismatch'
+        ping_value = 'unknown'
 
         print(dotalist.__next__(),sev,'-'*(25-len(sev)),ping_value)
     else:
