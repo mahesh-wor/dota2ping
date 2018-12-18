@@ -2,7 +2,8 @@ import sys
 import subprocess
 import os
 import threading
-
+#serverIP 
+#Some Fail because of lack of actual IP.
 sevip = {'SE Asia-1':'sgp-1.valve.net',
 'Europe West':'lux.valve.net',
 'Europe East':'vie.valve.net',
